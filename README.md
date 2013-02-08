@@ -27,6 +27,8 @@ Include assets:
     // radius 100 and data: [55, 20, 13, 32, 5, 1, 2]
     r.piechart(320, 240, 100, [55, 20, 13, 32, 5, 1, 2]);
 
+Read the documentation here http://g.raphaeljs.com/reference.html
+
 ## Contributing
 
 1. Fork it
