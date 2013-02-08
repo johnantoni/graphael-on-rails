@@ -39,5 +39,5 @@ Include assets:
 
 Special thanks goes to all the team who created the wonderful RaphaelJS & gRaphael libraries
 
-http://g.raphaeljs.com/
-http://raphaeljs.com/
+* http://g.raphaeljs.com/
+* http://raphaeljs.com/
