@@ -334,6 +334,23 @@ Raphael.el.label = function () {
 
     return paper.rect(bb.x - r / 2, bb.y - r / 2, bb.width + r, bb.height + r, r).attr({ stroke: 'none', fill: '#000' }).insertBefore(this.node ? this : this[0]);
 };
+/*\
+ * Element.vlabel
+ [ method ]
+ **
+ * Puts the context Element in a 'label' tooltip. Can also be used on sets.
+ **
+ = (object) path element of the label.
+ \*/
+Raphael.el.vlabel = function () {
+    var bb = this.getBBox(),
+        paper = this.paper || this[0].paper,
+        r = Math.min(20, bb.width + 10, bb.height + 10) / 2;
+
+    if (!paper) return;
+
+    return paper.rect(bb.x - r / 2, bb.y - r / 2, bb.width + r, bb.height + r, r).attr({ stroke: 'none', fill: 'none' }).insertBefore(this.node ? this : this[0]);
+};
 
 /*\
  * Element.blob
@@ -424,6 +441,31 @@ Raphael.fn.label = function (x, y, text) {
 
     text = this.text(x, y, text).attr(Raphael.g.txtattr);
     return set.push(text.label(), text);
+};
+/*
+ * Tooltips on Paper prototype
+ */
+/*\
+ * Paper.vlabel
+ [ method ]
+ **
+ * Puts the given `text` into a 'clear value label' tooltip. The text is given a default style according to @g.vt_txtattr. See @Element.label
+ **
+ > Parameters
+ **
+ - x (number) x coordinate of the center of the label
+ - y (number) y coordinate of the center of the label
+ - text (string) text to place inside the label
+ **
+ = (object) set containing the label path and the text element
+ > Usage
+ | paper.label(50, 50, "$9.99");
+ \*/
+Raphael.fn.vlabel = function (x, y, text) {
+    var set = this.set();
+
+    text = this.text(x, y, text).attr(Raphael.g.vt_txtattr);
+    return set.push(text.vlabel(), text);
 };
 
 /*\
@@ -549,6 +591,7 @@ Raphael.fn.blob = function (x, y, text, angle) {
     text = this.text(x, y, text).attr(Raphael.g.txtattr);
     return set.push(text.blob(angle), text);
 };
+
 
 /**
  * Brightness functions on the Element prototype
@@ -692,7 +735,7 @@ Raphael.g = {
      | { font: '12px Arial, sans-serif', fill: '#fff' }
      \*/  
     txtattr: { font: '12px Arial, sans-serif', fill: '#fff' },
-
+    vt_txtattr: { font: '12px Arial, sans-serif', fill: '#000' },
     /*\
      * g.colors
      [ array ]
