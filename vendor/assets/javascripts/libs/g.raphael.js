@@ -334,23 +334,7 @@ Raphael.el.label = function () {
 
     return paper.rect(bb.x - r / 2, bb.y - r / 2, bb.width + r, bb.height + r, r).attr({ stroke: 'none', fill: '#000' }).insertBefore(this.node ? this : this[0]);
 };
-/*\
- * Element.vlabel
- [ method ]
- **
- * Puts the context Element in a 'label' tooltip. Can also be used on sets.
- **
- = (object) path element of the label.
- \*/
-Raphael.el.vlabel = function () {
-    var bb = this.getBBox(),
-        paper = this.paper || this[0].paper,
-        r = Math.min(20, bb.width + 10, bb.height + 10) / 2;
 
-    if (!paper) return;
-
-    return paper.rect(bb.x - r / 2, bb.y - r / 2, bb.width + r, bb.height + r, r).attr({ stroke: 'none', fill: 'none' }).insertBefore(this.node ? this : this[0]);
-};
 
 /*\
  * Element.blob
@@ -465,7 +449,7 @@ Raphael.fn.vlabel = function (x, y, text) {
     var set = this.set();
 
     text = this.text(x, y, text).attr(Raphael.g.vt_txtattr);
-    return set.push(text.vlabel(), text);
+    return set.push(text);
 };
 
 /*\
